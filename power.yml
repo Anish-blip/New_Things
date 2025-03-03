@@ -1,0 +1,14 @@
+---
+- name: Calculate the value of 'a' to the power 'b'
+  hosts: localhost
+  tasks:
+    - name: Calculate power
+      shell: echo "{{ a }}^{{ b }}" | bc
+      register: result
+
+    - name: Display result
+      debug:
+        msg: "power({{ a }}, {{ b }}) -> {{ result.stdout }}"
+  vars:
+    a: 3
+    b: 4

@@ -1,0 +1,16 @@
+---
+- name: Execute Python script to sort a list of dictionaries
+  hosts: localhost
+  tasks:
+    - name: Copy the Python script to the remote host
+      copy:
+        src: lambda.py
+        dest: /tmp/lambda.py
+
+    - name: Execute the Python script
+      command: python3 /tmp/lambda.py
+      register: script_output
+
+    - name: Display the output of the Python script
+      debug:
+        msg: "{{ script_output.stdout }}"

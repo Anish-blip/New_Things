@@ -1,0 +1,17 @@
+---
+- name: Execute Python script to check if a string starts with a given character
+  hosts: localhost
+  tasks:
+    - name: Copy the Python script to the remote host
+      copy:
+        src: /mnt/c/DevOps/check_script.py
+        dest: /tmp/check_script.py
+
+    - name: Execute the Python script
+      command: python3 /tmp/check_script.py
+      register: script_output
+
+    - name: Display the output of the Python script
+      debug:
+        msg: "{{ script_output.stdout }}"
+
